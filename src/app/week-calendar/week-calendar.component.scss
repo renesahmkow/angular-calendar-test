@@ -1,0 +1,91 @@
+.calendar {
+  width: 100%;
+  height: 75vh;
+  overflow: scroll;
+}
+
+.modalbox {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  z-index: 15;
+  background-color: #01010155;
+
+  display: flex;
+  align-items: center;
+
+  &__inner {
+    width: 60%;
+    height: 60%;
+    margin: 0 auto;
+    background: #efefef;
+
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+
+    &__headline {
+      width: 100%;
+      background-color: #fefefe;
+      padding: 16px 5%;
+      margin-bottom: 32px;
+      font-size: 18px;
+      font-weight: 700;
+
+      display: flex;
+      justify-content: space-between;
+
+      &__nav {
+        display: flex;
+        width: 5%;
+        justify-content: space-between;
+
+        &:nth-child(n) {
+          cursor: pointer;
+        }
+      }
+    }
+
+    &__card {
+      width: 90%;
+      background-color: #fefefe;
+      margin: 0 auto;
+      padding: 16px;
+      align-self: flex-start;
+
+      &__headline {
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      &__adress {
+        font-weight: 700;
+        font-family: 14px;
+        color: lightgray;
+      }
+
+      &__information {
+        padding: 16px;
+        width: 100%;
+        display: flex;
+        border: 4px solid #efefef;
+        border-radius: 8px;
+        color: gray;
+        font-weight: 700;
+        font-size: 16px;
+
+        :nth-child(n) {
+          margin: 0 24px;
+        }
+
+        :last-child {
+          margin: 0 auto;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,77 @@
+<div class="text-center w-100">
+  <div class="">
+    <h3>
+      {{ viewDate$ | calendarDate: view + "ViewTitle":"en" }}
+    </h3>
+  </div>
+  <div class="">
+    <div class="btn-group">
+      <div
+        class="btn btn-primary"
+        mwlCalendarPreviousView
+        [view]="view"
+        [(viewDate)]="viewDate$"
+      >
+        Previous
+      </div>
+      <div
+        class="btn btn-primary"
+        mwlCalendarNextView
+        [view]="view"
+        [(viewDate)]="viewDate$"
+      >
+        Next
+      </div>
+    </div>
+  </div>
+</div>
+<div class="calendar">
+  <mwl-calendar-week-view
+    [viewDate]="viewDate$"
+    [dayStartHour]="8"
+    [dayEndHour]="20"
+    [hourSegmentHeight]="100"
+    [hourSegments]="1"
+    [events]="events"
+    (eventClicked)="handleEvent($event.event)"
+  >
+  </mwl-calendar-week-view>
+</div>
+<div *ngIf="toggleModal$" (click)="closeModal()" class="modalbox">
+  <div class="modalbox__inner" (click)="$event.stopPropagation()">
+    <div class="modalbox__inner__headline">
+      <div>
+        {{ modalData.date | date: "EEEE, MMMM d, y":"de" }}
+      </div>
+      <div class="modalbox__inner__headline__nav">
+        <div *ngIf="showPrev()" (click)="prevEvent()"><</div>
+        <div *ngIf="showNext()" (click)="nextEvent()">></div>
+      </div>
+    </div>
+    <div class="modalbox__inner__card">
+      <div>
+        <h3 class="modalbox__inner__card__headline">
+          {{ modalData.property.name }}
+        </h3>
+        <p class="modalbox__inner__card__adress">
+          {{ modalData.property.address.street }},
+          {{ modalData.property.address.zipCode }}
+          {{ modalData.property.address.city }},
+          {{ modalData.property.address.country }}
+        </p>
+      </div>
+      <div class="modalbox__inner__card__information">
+        <div class="modalbox__inner__card__information__date">
+          {{ informationData.date.day }}
+        </div>
+        <div class="modalbox__inner__card__information__time">
+          {{ informationData.date.time }}
+        </div>
+        <div class="modalbox__inner__card__information__attendees">
+          {{ informationData.attendeeCount }} |
+          {{ informationData.maxInviteeCount }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
