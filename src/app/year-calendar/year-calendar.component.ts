@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MatCalendarCellCssClasses } from '@angular/material/datepicker';
 import { State, Store } from '@ngrx/store';
 import { viewDate } from '../store/setup.action';
 
@@ -25,20 +24,6 @@ export class YearCalendarComponent implements OnInit {
   }
 
   ngOnInit(): void {}
-
-  dateClass() {
-    return (date: Date): MatCalendarCellCssClasses => {
-      const highlightDate = this.calendarEvents$
-        .map((event) => new Date(event.date))
-        .some(
-          (d) =>
-            d.getDate() === date.getDate() &&
-            d.getMonth() === date.getMonth() &&
-            d.getFullYear() === date.getFullYear()
-        );
-      return highlightDate ? 'has-events' : '';
-    };
-  }
 
   getChangedValue(event: any) {
     this.store.dispatch(viewDate({ date: event }));

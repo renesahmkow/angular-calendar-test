@@ -33,6 +33,8 @@ export class CalendarComponent {
       viewDate: Date;
     }>
   ) {
+    // import Store data
+
     this.store.select('toggleModal').subscribe((res) => {
       this.toggleModal$ = res;
     });
@@ -59,6 +61,8 @@ export class CalendarComponent {
     });
   }
 
+  //  Modalbox functions
+
   handleEvent(event: CalendarEvent): void {
     this.modalData = data.data.appointments.nodes.find((node) => {
       return node.id === event.id;
@@ -72,6 +76,8 @@ export class CalendarComponent {
   closeModal(): void {
     if (this.toggleModal$) this.store.dispatch(toggleModal());
   }
+
+  // Modalbox information
 
   setInformationData() {
     this.informationData = Object.assign(
@@ -97,6 +103,8 @@ export class CalendarComponent {
     );
   }
 
+  // Modalbox next/prev Event
+
   nextEvent() {
     const event = this.modalData;
 
@@ -121,6 +129,8 @@ export class CalendarComponent {
       this.setInformationData();
     }
   }
+
+  // show Modalbox arrows
 
   showPrev() {
     const event = this.modalData;
